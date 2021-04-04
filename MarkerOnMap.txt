@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Map</title>
+
+    <style type="text/css">
+    
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+
+    <script>
+        var map;
+        var InforObj = [];
+        var CenterCords = {
+            lat: 13.1169198,
+            lng: 77.57512799999999
+        };
+
+        window.onload = function() {
+            initMap();
+        };
+      
+
+    const icons = {
+    park: {
+      icon:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fmarker&psig=AOvVaw1yj26r5eEQWxiw489LZQww&ust=1617545957879000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjIo8Wi4u8CFQAAAAAdAAAAABAD',
+    },
+    library: {
+      icon:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fmarker&psig=AOvVaw1yj26r5eEQWxiw489LZQww&ust=1617545957879000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjIo8Wi4u8CFQAAAAAdAAAAABAD',
+    },
+    temple: {
+      icon:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Fso%2Fmarker&psig=AOvVaw1yj26r5eEQWxiw489LZQww&ust=1617545957879000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjIo8Wi4u8CFQAAAAAdAAAAABAD',
+    },
+  };
+
+    const MarkerLocn = [
+        {
+            position: new google.maps.LatLng(13.118801, 77.587590),
+            type: "park",
+        },
+
+        {
+            position: new google.maps.LatLng(13.118215, 77.577993),
+            type: "library",
+        },
+        
+        {
+            position: new google.maps.LatLng(13.110450, 77.579874),
+            type: "temple",
+        }
+
+    ]
+      
+        function markerInfo() {
+            for( var i=0; i < MarkerLocn.length; i++ ) {
+                const marker = new google.maps.marker({
+                    position: MarkerLocn[i].LatLng[0],
+                    icon: icons[MarkerLocn[i].type].icon,
+                    map: map
+                });
+            }
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('maps'), {
+                zoom: 15,
+                center: CenterCords
+            });
+            markerInfo();
+      }
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTYMlpi1wKuvuzGOCLIGt4CGltjZmxFPs&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
